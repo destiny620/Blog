@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% block title %} Blogs {% endblock %}
+{% block homeactive %} active {% endblock homeactive %}
+
+{% block css %}
+
+{% endblock %}
+{% block body %}
+
+<div class="container mt-5 mb-3">
+
+  <div class="row">
+      {% for post in object_list %}
+      <div class="col-lg-4 my-4" id="icon-box">
+        
+          <div class="card shadow" style="width: 20rem; height: 30rem;">
+              <img src="/media/{{post.image}}" class="card-img-top" alt="..." height="160px">
+              <div class="card-body">
+                <h5  class="category"><a href="{% url 'category' post.category %}" style="text-decoration: none; color: rgb(120, 47, 47);">{{post.category}}</a></h5>
+                <h5 class="card-title">{{post.title}} <br><small>by {{post.author}}</small></h5>
+                <p>{{post.created_at}}</p>
+                <p class="card-text">{{post.content| truncatechars:100|safe}}</p>
+                <a href="{% url 'posts' post.slug %}" class="btn btn-primary">Read More {% if user.is_authenticated %}<a href="{% url 'delete_blog' post.pk %}" class="btn btn-secondary mx-4">Delete Blog{% endif %}</a>
+                
+              </div>
+              
+            </div>
+          </div>
+      {% endfor %}
+     
+  </div>
+</div>
+
+
+
+
+
+
+<script></script>
+<style>
+/* .icon-boxes {
+  margin-top: 50px;
+  margin-left: 50px; 
+} */
+
+#icon-box {
+  /* padding: 20px 20px;
+  position: relative;
+  overflow: hidden;
+  background-color: white;
+  box-shadow: 5px 10px 8px 10px  white; */
+  transition: all 0.3s ease-in-out;
+  /* border-radius: 8px; */
+  z-index: 1;
+  /* height: 400px; */
+  /* border: 1px solid; */
+ 
+  
+}
+
+/* .icon-box .title {
+  font-weight: 700;
+  margin-bottom: 15px;
+  font-size: 30px;
+} */
+
+#icon-box .title a {
+  /* color: #124265; */
+  transition: 0.3s;
+}
+
+/* .icon-box .description {
+  font-size: 15px;
+  line-height: 28px;
+  margin-bottom: 0;
+} */
+
+#icon-box .icon {
+  /* margin-bottom: 20px;
+  padding-top: 5px;
+  display: inline-block; */
+  transition: all 0.3s ease-in-out;
+  /* font-size: 36px;
+  line-height: 1;
+  color: #2487ce; */
+}
+
+#icon-box:hover {
+  transform: scale(1.08);
+}
+
+/* .icon-box:hover .title a {
+  color: #2487ce;
+} */
+</style>
+{% endblock %}

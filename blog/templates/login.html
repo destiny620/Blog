@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %} login {% endblock %}
+{% block loginactive %} active {% endblock loginactive %}
+
+{% block css %}
+
+{% endblock %}
+{% block body %}
+
+<style>
+    h3{
+        color: red;
+    }
+</style>
+
+{% for message in messages %}
+<h3>{{message}}</h3>
+{% endfor %}
+
+<form action="/login/" method="POST">
+    {% csrf_token %}
+    <div>
+        <div>
+            <label for="username" class="form-label">Username: </label><br>
+            <input type="text" class="form-control" name="username">
+        </div><br>
+        <div>
+            <label for="password" class="form-label">Password: </label><br>
+            <input type="password" class="form-control" name="password">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</form>
+
+
+
+{% block js %} 
+{% endblock %}
+<script></script>
+
+
+
+{% endblock %}

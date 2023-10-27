@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %} About {% endblock %}
+{% block aboutactive %} active {% endblock aboutactive %}
+
+{% block css %}
+
+{% endblock %}
+{% block body %}
+
+<div class="card-text">
+{% for post in posts %}
+<p>{{post.content}}</p>
+{% endfor %}
+</div>
+
+
+<style>
+    .card-text {
+        margin-left: 200px;
+        margin-top: 200px;  
+    }
+
+    .card-text p {
+        page-break-after: left;
+    }
+</style>
+{% endblock %}
